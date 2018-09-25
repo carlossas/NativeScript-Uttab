@@ -24,6 +24,7 @@ export class RegistroComponent implements OnInit {
 	public isLoading: false;
 	public usuario: Usuario;
 	public carreras: any [];
+	public nombre = ["uno", "dos", "tres"]
 	//RADDATAFORM
 	private _person: Person;
 
