@@ -1,0 +1,37 @@
+<ActionBar class="bg-success action-bar">
+
+    <NavigationButton text="Atras" android.systemIcon="ic_menu_back" (tap)="irAtras()"></NavigationButton>
+
+    <Label class="action-bar-title" text="UTTAB-EXAMENES"></Label>
+</ActionBar>
+
+
+<!-- CONTENIDO DE LA PAGINA -->
+<FlexboxLayout>
+    <StackLayout class="form" [class.dark]="!isLoggingIn">
+        <Label class="text-center registroText mb" textWrap="true" text="Registro UTTAB-EXAMENES"></Label>
+
+        <RadDataForm tkExampleTitle tkToggleNavButton [source]="person"></RadDataForm>
+
+
+        <form #usuario="ngForm" ngForm>
+
+            <TextField hint="Matricula" autocorrect="false" autocapitalizationType="none" name="matricula" [(ngModel)]="matricula" class="input input-border mb"></TextField>
+
+            <TextField hint="Nombre Completo" name="nombre" [(ngModel)]="nombre" class="input input-border mb"></TextField>
+
+            <TextField hint="Correo" keyboardType="email" autocorrect="false" autocapitalizationType="none" name="correo" [(ngModel)]="correo" class="input input-border mb"></TextField>
+
+            <TextField hint="Contraseña" secure="true" name="contrasena" [(ngModel)]="usuario.contrasena" class="input input-border mb"></TextField>
+
+            <TextField hint="Confirmar Contraseña" secure="true" name="contrasena2" [(ngModel)]="usuario.contrasena2" class="input input-border mb"></TextField>
+
+            <Button [text]="'Registrarme'" class="btn btn-primary btn-home" (tap)="registro(usuario)"></Button>
+
+        </form>
+
+        <ActivityIndicator [busy]="isLoading" [visibility]="isLoading ? 'visible' : 'collapse'" row="1" horizontalAlignment="center" verticalAlignment="center"></ActivityIndicator>
+    </StackLayout>
+
+</FlexboxLayout>
+<!-- TERMINA EL CONTENIDO DE LA PAGINA  -->

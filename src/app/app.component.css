@@ -1,0 +1,9 @@
+.bg-success {
+    background: #19ac92;
+    color: white;
+}
+
+.text-success {
+    color: #19ac92 !important;
+    background: #19ac92;
+}
