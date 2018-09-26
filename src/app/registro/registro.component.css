@@ -1,11 +1,11 @@
-FlexboxLayout {
-    justify-content: center;
-    align-items: center;
+StackLayout {
+    width: 100%;
+    padding: 25 15;
 }
 
-StackLayout {
-    width: 300;
-    padding: 10 16;
+.mb-list {
+    margin-top: -35rem;
+    margin-bottom: 5rem;
 }
 
 .bg-success {

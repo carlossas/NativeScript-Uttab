@@ -1,5 +1,4 @@
 import { Injectable } from "@angular/core";
-import { Http, Headers, Response } from "@angular/http";
 import { HttpClient, HttpHeaders } from "@angular/common/http";
 
 import { Observable } from "rxjs";
@@ -15,10 +14,9 @@ obtenerCarreras() {
     let headers = this.createRequestHeader();
     let url = URL_API + '/carreras/obtenerCarreras';
 
-    return this.http.get('http://192.168.1.77/uttab-evaluaciones/index.php/carreras/obtenerCarreras').pipe(
+    return this.http.get(url, { headers: headers }).pipe(
         map((resultado:any) =>{
-        
-        console.log("Obtener carreras function", resultado);
+        // console.log("Obtener carreras function", resultado);
         return resultado.result;
     }));
 
