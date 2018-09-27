@@ -5,6 +5,13 @@ import { NativeScriptUISideDrawerModule } from "nativescript-ui-sidedrawer/angul
 import { AppRoutingModule } from "./app-routing.module";
 import { AppComponent } from "./app.component";
 
+//AUTH SERVICE
+import { UsuarioService } from "~/app/shared/usuario/usuario.service";
+//MODULOS EXTERNOS
+import { NativeScriptHttpModule } from "nativescript-angular/http";
+import { NativeScriptHttpClientModule } from "nativescript-angular/http-client";
+
+
 @NgModule({
     bootstrap: [
         AppComponent
@@ -12,7 +19,12 @@ import { AppComponent } from "./app.component";
     imports: [
         AppRoutingModule,
         NativeScriptModule,
-        NativeScriptUISideDrawerModule
+        NativeScriptUISideDrawerModule,
+        NativeScriptHttpClientModule,
+        NativeScriptHttpModule
+    ],
+    providers: [
+        UsuarioService
     ],
     declarations: [
         AppComponent

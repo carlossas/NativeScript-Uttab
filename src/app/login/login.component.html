@@ -8,11 +8,22 @@
 
 <ScrollView orientation="vertical">
 
-    <StackLayout>
-        <Label class="" textWrap="true" text="Login UTTAB-EXAMENES"></Label>
+    <StackLayout class="form">
 
+        <Label class="text-center login-text mb" textWrap="true" text="LOGIN UTTAB-EXAMENES"></Label>
+
+
+        <form #usuario="ngForm" ngForm>
+
+            <TextField required hint="Matricula" autocorrect="false" autocapitalizationType="none" name="matricula" [(ngModel)]="matricula" class="input input-border mb"></TextField>
+
+            <TextField required hint="Contraseña" secure="true" name="contrasena" [(ngModel)]="contrasena" class="input input-border mb"></TextField>
+
+            <ActivityIndicator [busy]="isLoading" [visibility]="isLoading ? 'visible' : 'collapse'" row="1" horizontalAlignment="center" verticalAlignment="center"></ActivityIndicator>
+
+            <Button [isEnabled]="usuario.valid" [text]="'Ingresar'" class="btn btn-primary btn-home" (tap)="login(usuario)"></Button>
+
+        </form>
 
     </StackLayout>
-
-</ScrollView>
-<!-- TERMINA EL CONTENIDO DE LA PAGINA  -->
+    <!-- TERMINA EL CONTENIDO DE LA PAGINA  -->

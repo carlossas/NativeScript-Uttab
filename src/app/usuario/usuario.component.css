@@ -3,10 +3,6 @@ StackLayout {
     padding: 25 15;
 }
 
-.login-text {
-    font-size: 20px;
-}
-
 .bg-success {
     background: #19ac92;
     color: white;
@@ -16,6 +12,10 @@ Image {
     margin-top: 30;
     margin-bottom: 25;
     height: 70;
+}
+
+.usuarioText {
+    font-size: 20px;
 }
 
 .mb {

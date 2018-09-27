@@ -1,0 +1,27 @@
+<ActionBar class="bg-success action-bar">
+    <!-- 
+    Botón de navegación para usuarios
+    -->
+    <NavigationButton ios:visibility="collapsed" icon="res://menu" (tap)="abrirMenu()"></NavigationButton>
+    <!-- 
+    Use ActionItem para IOS con la posición establecida a la izquierda. Utilizando el
+    NavigationButton como un botón lateral en iOS no es posible,
+    porque su función es navegar siempre hacia atrás en la aplicación.
+    -->
+    <ActionItem icon="res://navigation/menu" android:visibility="collapsed" (tap)="abrirMenu()" ios.position="left">
+    </ActionItem>
+    <Label class="action-bar-title" text="UTTAB-EXAMENES"></Label>
+</ActionBar>
+
+<ScrollView orientation="vertical">
+
+    <StackLayout class="form">
+
+        <Label class="text-center usuarioText mb" textWrap="true" text="Bienvenido"></Label>
+
+        <ActivityIndicator [busy]="isLoading" [visibility]="isLoading ? 'visible' : 'collapse'" row="1" horizontalAlignment="center" verticalAlignment="center"></ActivityIndicator>
+
+    </StackLayout>
+
+</ScrollView>
+<!-- TERMINA EL CONTENIDO DE LA PAGINA  -->

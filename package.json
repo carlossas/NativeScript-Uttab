@@ -22,6 +22,7 @@
         "@angular/platform-browser-dynamic": "~6.1.0",
         "@angular/router": "~6.1.0",
         "nativescript-angular": "~6.1.0",
+        "nativescript-localstorage": "^2.0.0",
         "nativescript-theme-core": "~1.0.4",
         "nativescript-ui-dataform": "^3.7.3",
         "nativescript-ui-sidedrawer": "~4.2.0",

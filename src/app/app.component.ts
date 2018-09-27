@@ -4,6 +4,8 @@ import * as app from "application";
 import { RouterExtensions } from "nativescript-angular/router";
 import { DrawerTransitionBase, RadSideDrawer, SlideInOnTopTransition } from "nativescript-ui-sidedrawer";
 import { filter } from "rxjs/operators";
+//LOCALSTORAGE
+import * as localStorage from 'nativescript-localstorage';
 
 @Component({
     moduleId: module.id,
@@ -14,13 +16,29 @@ import { filter } from "rxjs/operators";
 export class AppComponent implements OnInit {
     private _activatedUrl: string;
     private _sideDrawerTransition: DrawerTransitionBase;
+    public usuario: any;
 
-    constructor(private router: Router, private routerExtensions: RouterExtensions) {
+    constructor(
+        private router: Router, 
+        private routerExtensions: RouterExtensions,
+        ) {
         // Use the component constructor to inject services.
+        this.usuario = localStorage.getItem('usuario');
+
+        //UNA VEZ QUE SE OBTIENE EL USUARIO DE LOCAL STORAGE, VERIFICA QUE ESTE AUTENTICADO
+        if(this.usuario != undefined){
+            this.routerExtensions.navigate(["/usuario"], {
+                clearHistory: true,
+                transition: {
+                    name: "fade"
+                }
+            });
+        }
     }
 
+    
+
     ngOnInit(): void {
-        this._activatedUrl = "/home";
         this._sideDrawerTransition = new SlideInOnTopTransition();
 
         this.router.events

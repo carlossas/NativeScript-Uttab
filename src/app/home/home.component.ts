@@ -20,11 +20,8 @@ export class HomeComponent implements OnInit {
     ngOnInit() {
     }
 
-    login(){
-        
-    }
 
-    registro(ruta: string){
+    navegar(ruta: string){
         this.routerExtensions.navigate([ruta], {
             transition: {
                 name: "fade"

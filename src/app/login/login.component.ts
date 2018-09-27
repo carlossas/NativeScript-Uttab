@@ -26,11 +26,41 @@ export class LoginComponent implements OnInit {
 		private routerExtensions: RouterExtensions,
 		public 	usuarioS: UsuarioService,
 	) { 
-		//INICIAR CLASE USUARIO
-		this.usuario = new Usuario();
+		
 	}
 
 	ngOnInit() {
+	}
+
+	login(form: NgForm){
+		console.log("ingreso", form.value);
+
+		this.isLoading = true;
+
+		let user = {
+			matricula: form.value.matricula,
+			contrasena: form.value.contrasena
+		}
+
+		this.usuarioS.login(user).subscribe( datos=>{
+			this.isLoading = false;
+
+			if(datos.error){
+				let options = {
+					title: "Alerta",
+					message: datos.mensaje,
+					okButtonText: "OK"
+				};
+				
+				alert(options);
+
+			}else{
+				this.usuario = datos.usuario;
+				console.log("login function", this.usuario);
+			}
+
+		});
+
 	}
    
 
