@@ -6,6 +6,7 @@ import { DrawerTransitionBase, RadSideDrawer, SlideInOnTopTransition } from "nat
 import { filter } from "rxjs/operators";
 //LOCALSTORAGE
 import * as localStorage from 'nativescript-localstorage';
+import { Usuario } from "~/app/shared/usuario/usuario.model";
 
 @Component({
     moduleId: module.id,
@@ -16,14 +17,16 @@ import * as localStorage from 'nativescript-localstorage';
 export class AppComponent implements OnInit {
     private _activatedUrl: string;
     private _sideDrawerTransition: DrawerTransitionBase;
-    public usuario: any;
+    public usuario: Usuario;
+    public ejemplo: string = "ejemplo1"
 
     constructor(
         private router: Router, 
         private routerExtensions: RouterExtensions,
         ) {
         // Use the component constructor to inject services.
-        this.usuario = localStorage.getItem('usuario');
+        let parseUser:any = localStorage.getItem('usuario');
+        this.usuario = JSON.parse(parseUser);        
 
         //UNA VEZ QUE SE OBTIENE EL USUARIO DE LOCAL STORAGE, VERIFICA QUE ESTE AUTENTICADO
         if(this.usuario != undefined){

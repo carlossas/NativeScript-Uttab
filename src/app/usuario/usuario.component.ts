@@ -6,7 +6,6 @@ import { RadSideDrawer } from "nativescript-ui-sidedrawer";
 
 import { NgForm } from '@angular/forms';
 import { action } from "ui/dialogs";
-
 // modelo
 import { Usuario } from '~/app/shared/usuario/usuario.model';
 //servicio
@@ -28,7 +27,6 @@ export class UsuarioComponent implements OnInit {
 		private routerExtensions: RouterExtensions,
 		public 	usuarioS: UsuarioService,
 	) { 
-
 	}
 
 	ngOnInit() {

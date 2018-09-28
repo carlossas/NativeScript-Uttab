@@ -1,10 +1,10 @@
 {
 	"folders": [
 		{
-			"path": "C:\\NS\\NS-UT"
+			"path": "C:\\AppServ\\www\\uttab-evaluaciones\\application"
 		},
 		{
-			"path": "C:\\AppServ\\www\\uttab-evaluaciones\\application"
+			"path": "C:\\ns\\NativeScript-Uttab"
 		}
 	],
 	"settings": {}

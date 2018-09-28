@@ -1,1 +1,1 @@
-export const URL_API = 'http://192.168.1.77/uttab-evaluaciones/index.php';
+export const URL_API = 'http://10.0.3.2/uttab-evaluaciones/index.php';

@@ -43,7 +43,7 @@ export class RegistroComponent implements OnInit {
                     return this.items[index].nombre;
 				}
 			}
-		//   console.log("carreras", this.carreras);
+		  console.log("carreras", this.carreras);
 		  
 		});
 	}

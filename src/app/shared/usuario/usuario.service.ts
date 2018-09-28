@@ -22,7 +22,8 @@ export class UsuarioService {
         private router: Router,
 		private routerExtensions: RouterExtensions,
     ) { 
-        this.usuario = localStorage.getItem('usuario');
+        let parseUser:any = localStorage.getItem('usuario');
+        this.usuario = JSON.parse(parseUser);  
         this.verificarSesion();
     }
 
@@ -46,6 +47,14 @@ export class UsuarioService {
                   //SI NO EXISTE NINGUN ERROR, ALMACENAMOS EL USUARIO EN STORAGE
                   if(!res.error){
                     localStorage.setItem('usuario', JSON.stringify(res.usuario));
+                    setTimeout(() => {
+                        this.routerExtensions.navigate(["/usuario"], {
+                            clearHistory: true,
+                            transition: {
+                                name: "fade"
+                            }
+                        });
+                    }, 500);
                   }
                 
                 return res;
