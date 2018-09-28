@@ -2,14 +2,14 @@
     <!-- 
     Botón de navegación para usuarios
     -->
-    <NavigationButton *ngIf="auth" ios:visibility="collapsed" icon="res://menu" (tap)="abrirMenu()"></NavigationButton>
+    <!-- <NavigationButton *ngIf="auth" ios:visibility="collapsed" icon="res://menu" (tap)="abrirMenu()"></NavigationButton> -->
     <!-- 
     Use ActionItem para IOS con la posición establecida a la izquierda. Utilizando el
     NavigationButton como un botón lateral en iOS no es posible,
     porque su función es navegar siempre hacia atrás en la aplicación.
     -->
-    <ActionItem *ngIf="auth" icon="res://navigation/menu" android:visibility="collapsed" (tap)="abrirMenu()" ios.position="left">
-    </ActionItem>
+    <!-- <ActionItem *ngIf="auth" icon="res://navigation/menu" android:visibility="collapsed" (tap)="abrirMenu()" ios.position="left">
+    </ActionItem> -->
     <Label class="action-bar-title" text="UTTAB-EXAMENES"></Label>
 </ActionBar>
 

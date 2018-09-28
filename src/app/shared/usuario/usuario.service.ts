@@ -29,13 +29,29 @@ export class UsuarioService {
 
 
     //UNA VEZ QUE SE OBTIENE EL USUARIO DE LOCAL STORAGE, VERIFICA QUE ESTE AUTENTICADO
+    //Y QUE EL TOKEN SIGA SIENDO VALIDO
     verificarSesion(){
         if(this.usuario != undefined){
             this.authStatus = true;
+            let headers = this.createRequestHeader();
+            let url = URL_API + '/usuario/obtenerUsuarioPorId';
+            let usuario  = {
+                id_usuario: this.usuario.id_usuario
+            }
+            this.http.post(url, usuario, { headers: headers }).pipe(
+            map((res: any) => {
+                console.log("token", res.usuario.token);
+                console.log("actual token", this.usuario.token);
+                
+                if(res.usuario.token === this.usuario.token){
+                    this.authStatus = true;
+                }else{
+                    this.cerrarSesion();
+                }
+            })).subscribe();
         }else{
             this.authStatus = false;
         }
-        console.log("Usuario autenticado", this.authStatus);
     }
 
     //LOGIN
@@ -46,6 +62,7 @@ export class UsuarioService {
               map((res: any) =>{
                   //SI NO EXISTE NINGUN ERROR, ALMACENAMOS EL USUARIO EN STORAGE
                   if(!res.error){
+                    this.usuario = res.usuario;
                     localStorage.setItem('usuario', JSON.stringify(res.usuario));
                     setTimeout(() => {
                         this.routerExtensions.navigate(["/usuario"], {
@@ -72,7 +89,7 @@ export class UsuarioService {
                     name: "fade"
                 }
             });
-        }, 800);
+        }, 500);
     }
 
     register(usuario: Usuario) {

@@ -7,4 +7,5 @@ export class Usuario {
     contrasena2?: string;
     tipo?: number;
     id_carrera?: number;
+    token?: string;
 }

@@ -26,7 +26,7 @@ export class UsuarioComponent implements OnInit {
 		private router: Router,
 		private routerExtensions: RouterExtensions,
 		public 	usuarioS: UsuarioService,
-	) { 
+	) { 		
 	}
 
 	ngOnInit() {

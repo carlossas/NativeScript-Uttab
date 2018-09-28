@@ -1,14 +1,14 @@
 <RadSideDrawer [drawerTransition]="sideDrawerTransition">
-    <GridLayout *ngIf="usuario != undefined" tkDrawerContent rows="auto, *" class="sidedrawer sidedrawer-left">
+    <GridLayout tkDrawerContent rows="auto, *" class="sidedrawer sidedrawer-left">
         <!-- DIV QUE CONTIENE LA IMAGEN, NOMBRE Y CORREO DEL USUARIO -->
-        <StackLayout row="0" class="sidedrawer-header bg-success">
+        <StackLayout *ngIf="usuario != undefined" row="0" class="sidedrawer-header bg-success">
             <Label class="sidedrawer-header-image fa" text="&#xf2bd;"></Label>
             <Label class="sidedrawer-header-brand" text="{{ usuario.nombre }}"></Label>
             <Label class=" footnote " text="{{ usuario.correo }}"></Label>
         </StackLayout>
 
         <ScrollView row="1 ">
-            <StackLayout class="sidedrawer-content ">
+            <StackLayout *ngIf="usuario != undefined" class="sidedrawer-content ">
                 <!-- AQUI VAN LOS CONTENEDORES DE LAS PAGINAS -->
                 <GridLayout columns="auto, * " class="sidedrawer-list-item " [class.selected]="isComponentSelected( '/home') " (tap)="navegar( '/home') ">
                     <Label col="0 " text="&#xf015; " class="fa "></Label>
