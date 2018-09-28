@@ -1,26 +1,52 @@
 <RadSideDrawer [drawerTransition]="sideDrawerTransition">
     <GridLayout tkDrawerContent rows="auto, *" class="sidedrawer sidedrawer-left">
         <!-- DIV QUE CONTIENE LA IMAGEN, NOMBRE Y CORREO DEL USUARIO -->
-        <StackLayout *ngIf="usuario != undefined" row="0" class="sidedrawer-header bg-success">
+        <StackLayout *ngIf="authS.usuarioAuth != undefined" row="0" class="sidedrawer-header bg-success">
             <Label class="sidedrawer-header-image fa" text="&#xf2bd;"></Label>
-            <Label class="sidedrawer-header-brand" text="{{ usuario.nombre }}"></Label>
-            <Label class=" footnote " text="{{ usuario.correo }}"></Label>
+            <Label class="sidedrawer-header-brand" text="{{ authS.usuarioAuth.nombre }}"></Label>
+            <Label class=" footnote " text="{{ authS.usuarioAuth.correo }}"></Label>
         </StackLayout>
 
         <ScrollView row="1 ">
-            <StackLayout *ngIf="usuario != undefined" class="sidedrawer-content ">
-                <!-- AQUI VAN LOS CONTENEDORES DE LAS PAGINAS -->
-                <GridLayout columns="auto, * " class="sidedrawer-list-item " [class.selected]="isComponentSelected( '/home') " (tap)="navegar( '/home') ">
+            <!-- MENU DE ALUMNOS -->
+            <StackLayout *ngIf="authS.usuarioAuth != undefined && authS.usuarioAuth.tipo == '0'" class="sidedrawer-content ">
+
+                <!-- SLIDE INICIO USUARIO-->
+                <GridLayout columns="auto, * " class="sidedrawer-list-item " [class.selected]="isComponentSelected( '/usuario') " (tap)="navegar( '/usuario')">
                     <Label col="0 " text="&#xf015; " class="fa "></Label>
                     <Label col="1 " text="Inicio" class="p-r-10 "></Label>
                 </GridLayout>
-                <!-- AQUI TERMINAN LOS CONTENEDORES DE LAS PAGINAS -->
+                <!-- CERRAR SESION -->
+                <GridLayout columns="auto, * " class="sidedrawer-list-item " (tap)="cerrarSesion()">
+                    <Label col="0 " text="&#xf057; " class="fa "></Label>
+                    <Label col="1 " text="Cerrar Sesión" class="p-r-10 "></Label>
+                </GridLayout>
+                <!-- SLIDE EXAMEN -->
 
                 <!-- ESTO ES UNA LINEA COMO UNA ETIQUETA HR -->
                 <StackLayout class="hr-light "></StackLayout>
 
             </StackLayout>
+            <!-- MENU DE ALUMNOS -->
+
+            <!-- MENU DE PROFESOR -->
+            <StackLayout *ngIf="authS.usuarioAuth != undefined && authS.usuarioAuth.tipo == '1'" class="sidedrawer-content ">
+
+                <GridLayout columns="auto, * " class="sidedrawer-list-item " [class.selected]="isComponentSelected( '/profesor/crearexamen') " (tap)="navegar('/profesor/crearexamen')">
+                    <Label col="0 " text="&#xf015; " class="fa "></Label>
+                    <Label col="1 " text="Crear Examen" class="p-r-10 "></Label>
+                </GridLayout>
+                <!-- CERRAR SESION -->
+                <GridLayout columns="auto, * " class="sidedrawer-list-item " (tap)="cerrarSesion()">
+                    <Label col="0 " text="&#xf057; " class="fa "></Label>
+                    <Label col="1 " text="Cerrar Sesión" class="p-r-10 "></Label>
+                </GridLayout>
+                <!-- ESTO ES UNA LINEA COMO UNA ETIQUETA HR -->
+                <StackLayout class="hr-light "></StackLayout>
+
+            </StackLayout>
         </ScrollView>
+        <!-- MENU DE PROFESOR -->
     </GridLayout>
     <!-- ROUTER OUTLET DE LAS NAGEACIONES -->
     <page-router-outlet tkMainContent class="page page-content "></page-router-outlet>

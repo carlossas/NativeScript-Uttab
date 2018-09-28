@@ -5,7 +5,7 @@ export class Usuario {
     correo?: string;
     contrasena?: string;
     contrasena2?: string;
-    tipo?: number;
+    tipo?: any;
     id_carrera?: number;
     token?: string;
 }

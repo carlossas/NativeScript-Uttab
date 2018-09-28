@@ -1,12 +1,13 @@
 import { Component, OnInit, ViewChild } from "@angular/core";
-import { NavigationEnd, Router } from "@angular/router";
-import * as app from "application";
+import { NavigationEnd, Router, ChildrenOutletContexts } from '@angular/router';
+import * as app from 'application';
 import { RouterExtensions } from "nativescript-angular/router";
 import { DrawerTransitionBase, RadSideDrawer, SlideInOnTopTransition } from "nativescript-ui-sidedrawer";
 import { filter } from "rxjs/operators";
 //LOCALSTORAGE
 import * as localStorage from 'nativescript-localstorage';
-import { Usuario } from "~/app/shared/usuario/usuario.model";
+//SERVICIO
+import { authService } from "./shared/auth";
 
 @Component({
     moduleId: module.id,
@@ -17,29 +18,50 @@ import { Usuario } from "~/app/shared/usuario/usuario.model";
 export class AppComponent implements OnInit {
     private _activatedUrl: string;
     private _sideDrawerTransition: DrawerTransitionBase;
-    public usuario: Usuario;
-    public ejemplo: string = "ejemplo1"
+    private firsPage: string; 
 
     constructor(
         private router: Router, 
         private routerExtensions: RouterExtensions,
+        private authS: authService
         ) {
-        // Use the component constructor to inject services.
+            
         let parseUser:any = localStorage.getItem('usuario');
-        this.usuario = JSON.parse(parseUser);        
-
+        this.authS.usuarioAuth = JSON.parse(parseUser);
         //UNA VEZ QUE SE OBTIENE EL USUARIO DE LOCAL STORAGE, VERIFICA QUE ESTE AUTENTICADO
-        if(this.usuario != undefined){
-            this.routerExtensions.navigate(["/usuario"], {
+        if(this.authS.usuarioAuth != undefined){
+            if (this.authS.usuarioAuth.tipo === "0"){
+                this.firsPage = "usuario"
+            }
+            if (this.authS.usuarioAuth.tipo === "1"){
+                this.firsPage = "profesor"
+            }
+            
+            this.routerExtensions.navigate(["/"+this.firsPage], {
+                clearHistory: true,
+                transition: {
+                    name: "fade"
+                }
+            });     
+        }
+         
+    }
+
+    cerrarSesion(){
+        localStorage.removeItem('usuario');
+        
+        setTimeout(() => {
+            this.authS.usuarioAuth = null;
+            this.routerExtensions.navigate(["/home"], {
                 clearHistory: true,
                 transition: {
                     name: "fade"
                 }
             });
-        }
+        }, 500);
+        const sideDrawer = <RadSideDrawer>app.getRootView();
+        sideDrawer.closeDrawer();
     }
-
-    
 
     ngOnInit(): void {
         this._sideDrawerTransition = new SlideInOnTopTransition();

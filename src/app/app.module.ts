@@ -8,11 +8,16 @@ import { AppComponent } from "./app.component";
 //MODULOS EXTERNOS
 import { NativeScriptHttpModule } from "nativescript-angular/http";
 import { NativeScriptHttpClientModule } from "nativescript-angular/http-client";
+//SERVICIO
+import { authService } from "./shared/auth";
 
 
 @NgModule({
     bootstrap: [
         AppComponent
+    ],
+    providers: [
+        authService
     ],
     imports: [
         AppRoutingModule,

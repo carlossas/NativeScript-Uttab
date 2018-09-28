@@ -1,8 +1,12 @@
 import { NgModule, NO_ERRORS_SCHEMA } from "@angular/core";
 import { NativeScriptCommonModule } from "nativescript-angular/common";
-
+//RUTAS
 import { UsuarioRoutingModule } from "./usuario-routing.module";
+//COMPONENTES
 import { UsuarioComponent } from "./usuario.component";
+import { ExamenComponent } from "./examen/examen.component";
+import { ListaExamenComponent } from "./listaExamen/listaExamen.component";
+
 //SERVICIOS
 import { UsuarioService } from '../shared/usuario/usuario.service';
 //MODULOS EXTERNOS
@@ -24,7 +28,9 @@ import { NativeScriptHttpClientModule } from "nativescript-angular/http-client";
         UsuarioService,
     ],
     declarations: [
-        UsuarioComponent
+        UsuarioComponent,
+        ExamenComponent,
+        ListaExamenComponent
     ],
     schemas: [
         NO_ERRORS_SCHEMA

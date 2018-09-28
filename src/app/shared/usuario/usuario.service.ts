@@ -11,19 +11,23 @@ import { Usuario } from "./usuario.model";
 import { URL_API } from "../url_api";
 //LOCALSTORAGE
 import * as localStorage from 'nativescript-localstorage';
+//AQUI SE ALMACENA EL USUARIO
+import { authService } from "../auth";
+
 
 @Injectable()
 export class UsuarioService {
-    public usuario: Usuario;
     public authStatus: boolean;
+    private firstPage: string;
 
     constructor(
         private http: HttpClient,
         private router: Router,
-		private routerExtensions: RouterExtensions,
+        private routerExtensions: RouterExtensions,
+        private authS: authService
     ) { 
         let parseUser:any = localStorage.getItem('usuario');
-        this.usuario = JSON.parse(parseUser);  
+        this.authS.usuarioAuth = JSON.parse(parseUser);  
         this.verificarSesion();
     }
 
@@ -31,19 +35,18 @@ export class UsuarioService {
     //UNA VEZ QUE SE OBTIENE EL USUARIO DE LOCAL STORAGE, VERIFICA QUE ESTE AUTENTICADO
     //Y QUE EL TOKEN SIGA SIENDO VALIDO
     verificarSesion(){
-        if(this.usuario != undefined){
+        if(this.authS.usuarioAuth != undefined){
             this.authStatus = true;
             let headers = this.createRequestHeader();
             let url = URL_API + '/usuario/obtenerUsuarioPorId';
             let usuario  = {
-                id_usuario: this.usuario.id_usuario
+                id_usuario: this.authS.usuarioAuth.id_usuario
             }
             this.http.post(url, usuario, { headers: headers }).pipe(
             map((res: any) => {
-                console.log("token", res.usuario.token);
-                console.log("actual token", this.usuario.token);
-                
-                if(res.usuario.token === this.usuario.token){
+                // console.log("token", res.usuario.token);
+                // console.log("actual token", this.authS.usuarioAuth.token);
+                if(res.usuario.token === this.authS.usuarioAuth.token){
                     this.authStatus = true;
                 }else{
                     this.cerrarSesion();
@@ -62,10 +65,17 @@ export class UsuarioService {
               map((res: any) =>{
                   //SI NO EXISTE NINGUN ERROR, ALMACENAMOS EL USUARIO EN STORAGE
                   if(!res.error){
-                    this.usuario = res.usuario;
+                    this.authS.usuarioAuth = res.usuario;
+                    this.authS.usuarioAuth = res.usuario;
                     localStorage.setItem('usuario', JSON.stringify(res.usuario));
                     setTimeout(() => {
-                        this.routerExtensions.navigate(["/usuario"], {
+                        if (this.authS.usuarioAuth.tipo === '0'){
+                            this.firstPage = "usuario";
+                        }
+                        if (this.authS.usuarioAuth.tipo === '1'){
+                            this.firstPage = "profesor";
+                        }
+                        this.routerExtensions.navigate(['/'+this.firstPage], {
                             clearHistory: true,
                             transition: {
                                 name: "fade"
@@ -80,7 +90,7 @@ export class UsuarioService {
 
     cerrarSesion(){
         localStorage.removeItem('usuario');
-        this.usuario = null;
+        this.authS.usuarioAuth = null;
         this.authStatus = false;
         setTimeout(() => {
             this.routerExtensions.navigate(["/home"], {
