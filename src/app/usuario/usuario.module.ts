@@ -9,6 +9,8 @@ import { ListaExamenComponent } from "./listaExamen/listaExamen.component";
 
 //SERVICIOS
 import { UsuarioService } from '../shared/usuario/usuario.service';
+import { ExamenesService } from '~/app/shared/examenalumno/examen.service';
+
 //MODULOS EXTERNOS
 import { NativeScriptFormsModule } from "nativescript-angular/forms";
 import { NativeScriptHttpModule } from "nativescript-angular/http";
@@ -26,6 +28,8 @@ import { NativeScriptHttpClientModule } from "nativescript-angular/http-client";
     ],
     providers: [
         UsuarioService,
+        ExamenesService
+        
     ],
     declarations: [
         UsuarioComponent,

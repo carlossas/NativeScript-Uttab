@@ -12,6 +12,11 @@ StackLayout {
     color: white;
 }
 
+.btn-primary {
+    background: #15138a;
+    color: white;
+}
+
 Image {
     margin-top: 30;
     margin-bottom: 25;

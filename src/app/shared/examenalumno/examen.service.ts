@@ -10,16 +10,25 @@ import { URL_API } from "../url_api";
 export class ExamenesService {
     constructor(public http: HttpClient) { }
 
-obtenerExamenes() {
+obtenerExamenes(id_carrera) {
     let headers = this.createRequestHeader();
-    let url = URL_API + '/carreras/obtenerCarreras';
+    let url = URL_API + '/examenesalumno/obtenerExamenes/' + id_carrera;
 
     return this.http.get(url, { headers: headers }).pipe(
         map((resultado:any) =>{
-        // console.log("Obtener carreras function", resultado);
         return resultado.result;
     }));
 
+}
+
+obtenerPreguntas(id_examen){
+    let headers = this.createRequestHeader();
+    let url = URL_API + '/examenesalumno/obtenerPreguntas/' + id_examen;
+
+    return this.http.get(url, { headers: headers }).pipe(
+        map((resultado: any) => {
+            return resultado.result;
+        }));
 }
 
 private createRequestHeader() {

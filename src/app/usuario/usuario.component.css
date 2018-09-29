@@ -3,11 +3,6 @@ StackLayout {
     padding: 25 15;
 }
 
-.bg-success {
-    background: #19ac92;
-    color: white;
-}
-
 Image {
     margin-top: 30;
     margin-bottom: 25;
@@ -20,4 +15,9 @@ Image {
 
 .mb {
     margin-bottom: 10;
+}
+
+.bg-success {
+    background: #19ac92;
+    color: white;
 }

@@ -23,7 +23,7 @@ export class AppComponent implements OnInit {
     constructor(
         private router: Router, 
         private routerExtensions: RouterExtensions,
-        private authS: authService
+        public authS: authService
         ) {
             
         let parseUser:any = localStorage.getItem('usuario');

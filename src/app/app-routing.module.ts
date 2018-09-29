@@ -10,7 +10,7 @@ const routes: Routes = [
     { path: "login", loadChildren: "~/app/login/login.module#LoginModule" },
     //MODULO DE ALUMNOS
     { path: "usuario", loadChildren: "~/app/usuario/usuario.module#UsuarioModule" },
-    { path: "examen", loadChildren: "~/app/usuario/usuario.module#UsuarioModule" },
+    { path: "examen/:id", loadChildren: "~/app/usuario/usuario.module#UsuarioModule" },
     { path: "listaexamen", loadChildren: "~/app/usuario/usuario.module#UsuarioModule" },
     //MODULO DE PROFESORES
     { path: "profesor", loadChildren: "~/app/profesor/profesor.module#ProfesorModule" },
