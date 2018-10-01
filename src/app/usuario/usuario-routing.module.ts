@@ -12,7 +12,7 @@ const routes: Routes = [
         component: UsuarioComponent,
         children: [
             { path: "", component: ListaExamenComponent },
-            { path: 'examen', component: ExamenComponent},
+            { path: 'examen/:id', component: ExamenComponent},
             { path: 'listaexamen', component: ListaExamenComponent},
         ]
     },

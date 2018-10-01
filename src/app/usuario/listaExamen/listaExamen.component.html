@@ -1,1 +1,14 @@
-<Label class="listaExamen" text="Hello ListaExamenComponent!"></Label>
+<ScrollView orientation="vertical">
+
+    <StackLayout>
+
+        <Label class="text-center mb-4" text="¡ HOLA{{ authS.usuarioAuth.nombre | uppercase }} !"></Label>
+
+        <Label class="text-center mb-3" text="Tienes {{ examenes.length }} examen(s) pendiente(s)"></Label>
+
+
+        <Button *ngFor="let examen of examenes" [text]="examen.nombre" (tap)="irAlExamen(examen.id_examen)" class="btn btn-primary btn-home mb-2"></Button>
+
+    </StackLayout>
+
+</ScrollView>

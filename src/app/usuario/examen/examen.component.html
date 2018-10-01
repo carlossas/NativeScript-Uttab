@@ -1,1 +1,21 @@
-<Label class="examen" text="Hello ExamenComponent!"></Label>
+<ScrollView orientation="vertical">
+
+
+    <StackLayout>
+
+        <Label class="text-center totalPreguntas mb-4" text="Preguntas restantes: {{ preguntas.length }}"></Label>
+        <Label class="text-center totalPreguntas mb-4" text="Total de aciertos: {{ aciertos }}/{{ totalPreguntas }}"></Label>
+        <Button *ngIf="calificacionFinal != undefined" text="Calificación: {{ calificacionFinal }}" class="btn btn-primary"></Button>
+
+        <div *ngFor="let pregunta of preguntas; let i = index">
+            <Label class="text-center pregunta mt-3 mb-3" text="{{ pregunta.pregunta | uppercase }}"></Label>
+
+            <Button text="a) {{ pregunta.opcion1 | uppercase }}" (tap)="responder(pregunta.opcion1, i)" class="btn bg-success"></Button>
+            <Button text="b) {{ pregunta.respuesta | uppercase }}" (tap)="responder(pregunta.respuesta, i)" class="btn bg-success"></Button>
+            <Button text="c) {{ pregunta.opcion2 | uppercase }}" (tap)="responder(pregunta.opcion2, i)" class="btn bg-success"></Button>
+            <Button text="d) {{ pregunta.opcion3 | uppercase }}" (tap)="responder(pregunta.opcion3, i)" class="btn bg-success"></Button>
+        </div>
+
+    </StackLayout>
+
+</ScrollView>
