@@ -4,7 +4,8 @@ import { RouterExtensions } from "nativescript-angular/router";
 import { NgForm } from '@angular/forms';
 import { ListPicker } from "ui/list-picker";
 import { action } from "ui/dialogs";
-
+//LOADING
+import {LoadingIndicator} from "nativescript-loading-indicator";
 // modelo
 import { Usuario } from '~/app/shared/usuario/usuario.model';
 //servicio
@@ -19,8 +20,9 @@ import { UsuarioService } from '../shared/usuario/usuario.service';
 
 export class LoginComponent implements OnInit {
 	//VARIABLES GLOBALES
-	public isLoading: boolean = false;
 	public usuario: Usuario;
+	public loader = new LoadingIndicator();
+
 	constructor(
 		private router: Router,
 		private routerExtensions: RouterExtensions,
@@ -35,7 +37,7 @@ export class LoginComponent implements OnInit {
 	login(form: NgForm){
 		console.log("ingreso", form.value);
 
-		this.isLoading = true;
+		this.loader.show();
 
 		let user = {
 			matricula: form.value.matricula,
@@ -43,7 +45,8 @@ export class LoginComponent implements OnInit {
 		}
 
 		this.usuarioS.login(user).subscribe( datos=>{
-			this.isLoading = false;
+			
+			this.loader.hide();
 
 			if(datos.error){
 				let options = {

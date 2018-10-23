@@ -68,7 +68,6 @@ export class UsuarioService {
                     this.authS.usuarioAuth = res.usuario;
                     this.authS.usuarioAuth = res.usuario;
                     localStorage.setItem('usuario', JSON.stringify(res.usuario));
-                    setTimeout(() => {
                         if (this.authS.usuarioAuth.tipo === '0'){
                             this.firstPage = "usuario";
                         }
@@ -81,7 +80,6 @@ export class UsuarioService {
                                 name: "fade"
                             }
                         });
-                    }, 500);
                   }
                 
                 return res;
@@ -92,14 +90,12 @@ export class UsuarioService {
         localStorage.removeItem('usuario');
         this.authS.usuarioAuth = null;
         this.authStatus = false;
-        setTimeout(() => {
             this.routerExtensions.navigate(["/home"], {
                 clearHistory: true,
                 transition: {
                     name: "fade"
                 }
             });
-        }, 500);
     }
 
     register(usuario: Usuario) {

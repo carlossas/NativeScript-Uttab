@@ -19,8 +19,6 @@
 
             <TextField required hint="Contraseña" secure="true" name="contrasena" [(ngModel)]="contrasena" class="input input-border mb"></TextField>
 
-            <ActivityIndicator [busy]="isLoading" [visibility]="isLoading ? 'visible' : 'collapse'" row="1" horizontalAlignment="center" verticalAlignment="center"></ActivityIndicator>
-
             <Button [isEnabled]="usuario.valid" [text]="'Ingresar'" class="btn btn-primary btn-home" (tap)="login(usuario)"></Button>
 
         </form>

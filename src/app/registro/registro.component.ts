@@ -10,6 +10,8 @@ import { Usuario } from '~/app/shared/usuario/usuario.model';
 //servicio
 import { UsuarioService } from '../shared/usuario/usuario.service';
 import { CarrerasService } from '~/app/shared/carreras/carreras.service';
+//LOADING
+import {LoadingIndicator} from "nativescript-loading-indicator";
 
 @Component({
 	moduleId: module.id,
@@ -19,11 +21,13 @@ import { CarrerasService } from '~/app/shared/carreras/carreras.service';
 })
 
 export class RegistroComponent implements OnInit {
+	
 	//VARIABLES GLOBALES
-	public isLoading: boolean = false;
 	public usuario: Usuario;
 	public carreras: any [];
 	public item: any;
+	public loader = new LoadingIndicator();
+
 	constructor(
 		private router: Router,
 		private routerExtensions: RouterExtensions,
@@ -46,6 +50,7 @@ export class RegistroComponent implements OnInit {
 		  console.log("carreras", this.carreras);
 		  
 		});
+		
 	}
 
 	ngOnInit() {
@@ -60,6 +65,9 @@ export class RegistroComponent implements OnInit {
 			return;
 		}
 
+		this.loader.show();
+
+
 		if (form.value.carrera === undefined){
 			form.value.carrera = 0;
 		}
@@ -72,11 +80,13 @@ export class RegistroComponent implements OnInit {
 			id_carrera: this.carreras[form.value.carrera].id_carrera,
 			tipo: 0
 		}
-		this.isLoading = true;
+
 
 		this.usuarioS.register(usuario).subscribe( (datos)=>{
 			console.log("register function:", datos);
-			this.isLoading = false;
+			
+			this.loader.hide();
+
 			if(datos.mensaje == "El usuario ya existe"){
 				let options = {
 					title: "Alerta",
@@ -87,6 +97,7 @@ export class RegistroComponent implements OnInit {
 				alert(options);
 			}
 			if(!datos.error){
+				
 				let confirmOptions: any = {
 					title: "Perfecto",
 					message: "Su registro se realizo con exito",

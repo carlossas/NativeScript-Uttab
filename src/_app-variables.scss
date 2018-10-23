@@ -1,8 +1,8 @@
 // Import the theme’s variables. If you’re using a color scheme
 // other than “light”, switch the path to the alternative scheme,
 // for example '~nativescript-theme-core/scss/dark'.
-// @import '~nativescript-theme-core/scss/light';
-@import '~nativescript-theme-core/css/core.light.css';
+@import '~nativescript-theme-core/scss/light';
+// @import '~nativescript-theme-core/css/core.light.css';
 // Custom colors
 $background-dark: #F8F8F8 !default;
 $background-light: #FFFFFF !default;
@@ -33,6 +33,8 @@ $page-content-placeholder-font-size: 20;
 
 // Colors
 $background: #fff;
+$white: #fff;
+$black: #222;
 $primary: lighten(#000, 13%);
 $secondary: lighten(#000, 46%);
 $disabled: lighten(#000, 62%);
@@ -49,8 +51,8 @@ $side-drawer-header-background: #fafafa;
 $side-drawer-header-brand: #737373;
 $side-drawer-background: #FFFFFF;
 // ActionBar
-// $ab-background: $accent;
-// $ab-color: $white;
+$ab-background: $accent;
+$ab-color: $white;
 // Buttons
 $btn-color-inverse: $white;
 $btn-color: $accent;
