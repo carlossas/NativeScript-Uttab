@@ -34,7 +34,7 @@ export class ListaExamenComponent implements OnInit {
 	irAlExamen(id_examen){
 		this.routerExtensions.navigate(['usuario/examen', id_examen], {
 			transition: {
-				name: "fade"
+				name: "slide"
 			},
 			clearHistory: true
 		});

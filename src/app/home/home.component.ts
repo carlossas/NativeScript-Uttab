@@ -23,8 +23,9 @@ export class HomeComponent implements OnInit {
 
     navegar(ruta: string){
         this.routerExtensions.navigate([ruta], {
+            animated: true,
             transition: {
-                name: "fade"
+                name: "slide"
             }
         });
     }

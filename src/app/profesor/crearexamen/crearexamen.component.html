@@ -1,1 +1,22 @@
-<Label class="crearexamen" text="Hello CrearexamenComponent!"></Label>
+<ScrollView orientation="vertical">
+
+    <StackLayout>
+
+        <Label class="text-center mb-2" text="¡ BIENVENIDO PROFESOR {{ authS.usuarioAuth.nombre | uppercase }} !"></Label>
+        <Label class="text-center mb-3" text="¿Listo para aplicar un examen?"></Label>
+
+        <form #newExamen="ngForm" ngForm>
+
+            <TextField required hint="Titulo del examen" name="nombre" [(ngModel)]="nombre" class="input input-border mb"></TextField>
+
+            <TextField required hint="Número de preguntas" autocapitalizationType="none" name="preguntas" [(ngModel)]="preguntas" class="input input-border"></TextField>
+
+            <ListPicker name="carrera" [(ngModel)]="carrera" *ngIf="item != undefined" [items]="item" selectedIndex="0" class=""></ListPicker>
+
+            <Button [isEnabled]="newExamen.valid" [text]="'Crear examen'" class="btn btn-primary btn-home mb-2" (tap)="registro(newExamen)"></Button>
+
+        </form>
+
+    </StackLayout>
+
+</ScrollView>

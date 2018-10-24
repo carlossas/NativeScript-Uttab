@@ -76,9 +76,7 @@ export class UsuarioService {
                         }
                         this.routerExtensions.navigate(['/'+this.firstPage], {
                             clearHistory: true,
-                            transition: {
-                                name: "fade"
-                            }
+                            animated: false
                         });
                   }
                 
@@ -92,9 +90,7 @@ export class UsuarioService {
         this.authStatus = false;
             this.routerExtensions.navigate(["/home"], {
                 clearHistory: true,
-                transition: {
-                    name: "fade"
-                }
+                animated: false
             });
     }
 

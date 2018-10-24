@@ -68,9 +68,11 @@ export class LoginComponent implements OnInit {
    
 
 	irAtras(){
-		this.routerExtensions.navigate(["/home"], {
+		//SE USA PARA TRANSICIONES
+		this.routerExtensions.navigate([''], {
+			clearHistory: true,
 			transition: {
-				name: "fade"
+				name: "slideRight"
 			}
 		});
 	}

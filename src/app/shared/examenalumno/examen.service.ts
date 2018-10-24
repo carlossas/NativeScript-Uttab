@@ -31,6 +31,16 @@ obtenerPreguntas(id_examen){
         }));
 }
 
+crearExamen(examen){
+    let headers = this.createRequestHeader();
+    let url = URL_API + '/examenesalumno/crearExamen';
+
+    return this.http.post(url, examen, { headers: headers }).pipe(
+        map((resultado: any) => {
+            return resultado.result;
+        }));
+}
+
 private createRequestHeader() {
     // set headers here e.g.
     let headers = new HttpHeaders({

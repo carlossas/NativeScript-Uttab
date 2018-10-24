@@ -12,6 +12,8 @@ import { UsuarioService } from '../shared/usuario/usuario.service';
 import { NativeScriptFormsModule } from "nativescript-angular/forms";
 import { NativeScriptHttpModule } from "nativescript-angular/http";
 import { NativeScriptHttpClientModule } from "nativescript-angular/http-client";
+import { CarrerasService } from "../shared/carreras/carreras.service";
+import { ExamenesService } from "../shared/examenalumno/examen.service";
 
 
 
@@ -25,6 +27,8 @@ import { NativeScriptHttpClientModule } from "nativescript-angular/http-client";
     ],
     providers: [
         UsuarioService,
+        CarrerasService,
+        ExamenesService,
     ],
     declarations: [
         ProfesorComponent,
