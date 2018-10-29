@@ -13,7 +13,6 @@ import { CarrerasService } from '~/app/shared/carreras/carreras.service';
 //LOADING
 import {LoadingIndicator} from "nativescript-loading-indicator";
 import { animate, transition } from '@angular/animations';
-import { animationFrame } from '../../../platforms/android/app/src/main/assets/app/tns_modules/rxjs/src/internal/scheduler/animationFrame';
 
 @Component({
 	moduleId: module.id,
